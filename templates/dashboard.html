@@ -1,8 +1,8 @@
+<!-- #sagar -->
 {% extends "base.html" %}
 
 {% block content %}
 <div class="container-fluid py-4">
-    
     <!-- Service Selection Cards -->
     <div class="row g-4 mb-4" id="serviceCards">
         {% for service_id, price in service_prices.items() %}
@@ -70,12 +70,13 @@
                         <input type="hidden" id="serviceType" name="serviceType">
                         <input type="hidden" id="invoiceType" name="invoiceType" value="TOKEN">
                         <input type="hidden" id="printData" name="printData">
-                        
+
                         <!-- Frequency (Only for Abhishekam) -->
                         <div class="mb-4" id="frequencySection" style="display: none;">
                             <label class="form-label">Select Frequency *</label>
                             <div class="btn-group w-100" role="group">
-                                <input type="radio" class="btn-check" name="frequency" id="single" value="SINGLE" required checked>
+                                <input type="radio" class="btn-check" name="frequency" id="single" value="SINGLE"
+                                    required checked>
                                 <label class="btn btn-outline-primary" for="single">Single</label>
                                 <input type="radio" class="btn-check" name="frequency" id="weekly" value="WEEKLY">
                                 <label class="btn btn-outline-primary" for="weekly">Weekly</label>
@@ -91,7 +92,8 @@
                         <div class="mb-4">
                             <label class="form-label">Select Payment Method *</label>
                             <div class="btn-group w-100" role="group">
-                                <input type="radio" class="btn-check" name="paymentMethod" id="upi" value="UPI" required>
+                                <input type="radio" class="btn-check" name="paymentMethod" id="upi" value="UPI"
+                                    required>
                                 <label class="btn btn-outline-primary" for="upi">UPI</label>
                                 <input type="radio" class="btn-check" name="paymentMethod" id="cash" value="CASH">
                                 <label class="btn btn-outline-primary" for="cash">Cash</label>
@@ -111,21 +113,25 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Gothram *</label>
-                                            <input type="text" class="form-control" name="gothram" id="gothram" required>
+                                            <input type="text" class="form-control" name="gothram" id="gothram"
+                                                required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Name *</label>
-                                            <input type="text" class="form-control" name="devoteeName" id="devoteeName" required>
+                                            <input type="text" class="form-control" name="devoteeName" id="devoteeName"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Contact Number</label>
-                                            <input type="tel" class="form-control" name="devoteeContactNum" id="devoteeContactNum">
+                                            <input type="tel" class="form-control" name="devoteeContactNum"
+                                                id="devoteeContactNum">
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Puja Details *</label>
-                                            <textarea class="form-control" name="pujaDetails" id="pujaDetails" rows="2" required></textarea>
+                                            <textarea class="form-control" name="pujaDetails" id="pujaDetails" rows="2"
+                                                required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +246,8 @@
                             <div class="receipt-copy office-copy">
                                 <div class="text-center">
                                     <h2 class="temple-name">Shirdi Sai Cultural Mission</h2>
-                                    <p class="temple-address">Vidyanagar, Tirupati District, Andhra Pradesh. -524413 <br> Contact Number - 9705894817</p>
+                                    <p class="temple-address">Vidyanagar, Tirupati District, Andhra Pradesh. -524413
+                                        <br> Contact Number - 9705894817</p>
                                     <h2 class="service-name mb-3"></h2>
                                 </div>
                                 <div class="receipt-content">
@@ -286,12 +293,13 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Devotee Copy -->
                             <div class="receipt-copy devotee-copy">
                                 <div class="text-center">
                                     <h2 class="temple-name">Shirdi Sai Cultural Mission</h2>
-                                    <p class="temple-address">Vidyanagar, Tirupati District, Andhra Pradesh. -524413 <br> Contact Number - 09705894817</p>
+                                    <p class="temple-address">Vidyanagar, Tirupati District, Andhra Pradesh. -524413
+                                        <br> Contact Number - 9705894817</p>
                                     <h2 class="service-name mb-3"></h2>
                                 </div>
                                 <div class="receipt-content">
@@ -373,18 +381,18 @@
 
 {% block scripts %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const serviceModal = document.getElementById('serviceModal');
-    const serviceCards = document.querySelectorAll('.service-card');
-    const selectedServiceTitle = document.getElementById('selectedServiceTitle');
-    const templeServiceForm = document.getElementById('templeServiceForm');
-    const includeAddress = document.getElementById('includeAddress');
-    const addressFields = document.getElementById('addressFields');
-    const devoteeDetails = document.getElementById('additionalDetails');
-    const frequencySection = document.getElementById('frequencySection');
-    const frequencyInputs = document.querySelectorAll('input[name="frequency"]');
-    let currentServiceId = null;
-    let currentServicePrice = 0;
+    document.addEventListener('DOMContentLoaded', function () {
+        const serviceModal = document.getElementById('serviceModal');
+        const serviceCards = document.querySelectorAll('.service-card');
+        const selectedServiceTitle = document.getElementById('selectedServiceTitle');
+        const templeServiceForm = document.getElementById('templeServiceForm');
+        const includeAddress = document.getElementById('includeAddress');
+        const addressFields = document.getElementById('addressFields');
+        const devoteeDetails = document.getElementById('additionalDetails');
+        const frequencySection = document.getElementById('frequencySection');
+        const frequencyInputs = document.querySelectorAll('input[name="frequency"]');
+        let currentServiceId = null;
+        let currentServicePrice = 0;
 
     // Service card click handler
     serviceCards.forEach(card => {
@@ -411,460 +419,504 @@ document.addEventListener('DOMContentLoaded', function() {
             serviceModalInstance.show();
         });
     });
-
-    // Toggle address fields
-    includeAddress.addEventListener('change', (e) => {
-        addressFields.style.display = e.target.checked ? 'block' : 'none';
-    });
-
-    // Update amount when frequency changes
-    frequencyInputs.forEach(input => {
-        input.addEventListener('change', () => {
-            updateFormFields(currentServiceId);
-            updateAmount();
-        });
-    });
-
-    // Update form fields based on service type and frequency
-    function updateFormFields(serviceId) {
-        const isAbhishekam = serviceId === '1';
-        const isArchana = serviceId === '2';
-        const frequencyValue = document.querySelector('input[name="frequency"]:checked')?.value;
-        
-        // Handle invoice type internally
-        const invoiceTypeInput = document.getElementById('invoiceType');
-        
-        if (isAbhishekam) {
-            // Show frequency for Abhishekam
-            frequencySection.style.display = 'block';
-            // Set invoice type based on frequency
-            invoiceTypeInput.value = frequencyValue === 'SINGLE' ? 'TOKEN' : 'RECEIPT';
-            // Show additional details for weekly/monthly
-            devoteeDetails.style.display = frequencyValue === 'SINGLE' ? 'none' : 'block';
-        } else if (isArchana) {
-            // Hide frequency for Archana
-            frequencySection.style.display = 'none';
-            // Always token for Archana
-            invoiceTypeInput.value = 'TOKEN';
-            // Hide additional details
-            devoteeDetails.style.display = 'none';
-        } else {
-            // Hide frequency for other services
-            frequencySection.style.display = 'none';
-            // Always receipt for other services
-            invoiceTypeInput.value = 'RECEIPT';
-            // Show additional details
-            devoteeDetails.style.display = 'block';
-        }
-
-        // Update required fields
-        const nameInput = document.getElementById('devoteeName');
-        const gothramInput = document.getElementById('gothram');
-        const pujaDetailsInput = document.getElementById('pujaDetails');
-
-        const requireFields = devoteeDetails.style.display === 'block';
-        nameInput.required = requireFields;
-        gothramInput.required = requireFields;
-        pujaDetailsInput.required = requireFields;
-    }
-
-    // Update amount based on frequency
-    function updateAmount() {
-        let finalAmount = currentServicePrice;
-        
-        if (frequencySection.style.display === 'block') {
-            const frequency = document.querySelector('input[name="frequency"]:checked').value;
-            if (frequency === 'WEEKLY') {
-                finalAmount *= 7;
-            } else if (frequency === 'MONTHLY') {
-                finalAmount *= 30;
-            }
-        }
-        
-        document.getElementById('amount').textContent = finalAmount.toFixed(2);
-    }
-
-    // Form submission
-    templeServiceForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        const data = {};
-        
-        // Extract service type first
-        const serviceType = formData.get('serviceType');
-        
-        // Build data object
-        formData.forEach((value, key) => {
-            if (key.startsWith('address[')) {
-                const addressKey = key.match(/\[(.*?)\]/)[1];
-                if (!data.address) data.address = {};
-                if (value) data.address[addressKey] = value;
-            } else if (key !== 'serviceType') { // Skip serviceType as it goes in URL
-                data[key] = value;
-            }
+        // Toggle address fields
+        includeAddress.addEventListener('change', (e) => {
+            addressFields.style.display = e.target.checked ? 'block' : 'none';
         });
 
-        try {
-            const response = await fetch(`/temple-management/services?serviceType=${serviceType}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+        // Update amount when frequency changes
+        frequencyInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                updateFormFields(currentServiceId);
+                updateAmount();
             });
-            
-            const result = await response.json();
-            console.log('Server Response:', result); // Debug log
-            
-            if (response.ok) {
-                // Hide service modal
-                const serviceModalInstance = bootstrap.Modal.getInstance(serviceModal);
-                serviceModalInstance.hide();
-                
-                // Store print data
-                const printData = {
-                    invoiceType: data.invoiceType,
-                    invoiceNumber: result.id,
-                    serviceName: result.serviceName,
-                    gothram: result.gothram,
-                    devoteeName: result.devoteeName,
-                    pujaDetails: result.pujaDetails,
-                    address: result.address,
-                    amount: result.amount,
-                    validTill: result.validTill
-                };
-                document.getElementById('printData').value = JSON.stringify(printData);
-                
-                // Directly show print preview
-                updatePrintPreview(printData);
-                
-                // Reset form
-                templeServiceForm.reset();
+        });
+
+        // Update form fields based on service type and frequency
+        function updateFormFields(serviceId) {
+            const isAbhishekam = serviceId === '1';
+            const isArchana = serviceId === '2';
+            const frequencyValue = document.querySelector('input[name="frequency"]:checked')?.value;
+
+            // Handle invoice type internally
+            const invoiceTypeInput = document.getElementById('invoiceType');
+
+            if (isAbhishekam) {
+                // Show frequency for Abhishekam
+                frequencySection.style.display = 'block';
+                // Set invoice type based on frequency
+                invoiceTypeInput.value = frequencyValue === 'SINGLE' ? 'TOKEN' : 'RECEIPT';
+                // Show additional details for weekly/monthly
+                devoteeDetails.style.display = frequencyValue === 'SINGLE' ? 'none' : 'block';
+            } else if (isArchana) {
+                // Hide frequency for Archana
+                frequencySection.style.display = 'none';
+                // Always token for Archana
+                invoiceTypeInput.value = 'TOKEN';
+                // Hide additional details
+                devoteeDetails.style.display = 'none';
             } else {
-                throw new Error(result.message || 'Failed to create service');
+                // Hide frequency for other services
+                frequencySection.style.display = 'none';
+                // Always receipt for other services
+                invoiceTypeInput.value = 'RECEIPT';
+                // Show additional details
+                devoteeDetails.style.display = 'block';
             }
-        } catch (error) {
-            document.getElementById('errorMessage').textContent = error.message;
-            const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-            errorModal.show();
+
+            // Update required fields
+            const nameInput = document.getElementById('devoteeName');
+            const gothramInput = document.getElementById('gothram');
+            const pujaDetailsInput = document.getElementById('pujaDetails');
+
+            const requireFields = devoteeDetails.style.display === 'block';
+            nameInput.required = requireFields;
+            gothramInput.required = requireFields;
+            pujaDetailsInput.required = requireFields;
         }
-    });
 
-    // Form validation
-    function validateForm() {
-        const requiredFields = templeServiceForm.querySelectorAll('[required]');
-        let isValid = true;
+        // Update amount based on frequency
+        function updateAmount() {
+            let finalAmount = currentServicePrice;
 
-        requiredFields.forEach(field => {
-            if (!field.value) {
-                field.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                field.classList.remove('is-invalid');
+            if (frequencySection.style.display === 'block') {
+                const frequency = document.querySelector('input[name="frequency"]:checked').value;
+                if (frequency === 'WEEKLY') {
+                    finalAmount *= 7;
+                } else if (frequency === 'MONTHLY') {
+                    finalAmount *= 30;
+                }
+            }
+
+            document.getElementById('amount').textContent = finalAmount.toFixed(2);
+        }
+
+        // Form submission
+        templeServiceForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {};
+
+            // Extract service type first
+            const serviceType = formData.get('serviceType');
+
+            // Build data object
+            formData.forEach((value, key) => {
+                if (key.startsWith('address[')) {
+                    const addressKey = key.match(/\[(.*?)\]/)[1];
+                    if (!data.address) data.address = {};
+                    if (value) data.address[addressKey] = value;
+                } else if (key !== 'serviceType') { // Skip serviceType as it goes in URL
+                    data[key] = value;
+                }
+            });
+
+            try {
+                const response = await fetch(`/temple-management/services?serviceType=${serviceType}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                console.log('Server Response:', result); // Debug log
+
+                if (response.ok) {
+                    // Hide service modal
+                    const serviceModalInstance = bootstrap.Modal.getInstance(serviceModal);
+                    serviceModalInstance.hide();
+
+                    // Store print data
+                    const printData = {
+                        invoiceType: data.invoiceType,
+                        invoiceNumber: result.id,
+                        serviceName: result.serviceName,
+                        gothram: result.gothram,
+                        devoteeName: result.devoteeName,
+                        pujaDetails: result.pujaDetails,
+                        address: result.address,
+                        amount: result.amount,
+                        validTill: result.validTill
+                    };
+                    document.getElementById('printData').value = JSON.stringify(printData);
+
+                    // Directly show print preview
+                    updatePrintPreview(printData);
+
+                    // Reset form
+                    templeServiceForm.reset();
+                } else {
+                    throw new Error(result.message || 'Failed to create service');
+                }
+            } catch (error) {
+                document.getElementById('errorMessage').textContent = error.message;
+                const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
             }
         });
 
-        return isValid;
-    }
+        // Form validation
+        function validateForm() {
+            const requiredFields = templeServiceForm.querySelectorAll('[required]');
+            let isValid = true;
 
-    // Print preview functions
-    function updatePrintPreview(printData) {
-        console.log('Print Preview Data:', printData); // Debug log
-        
-        if (!printData) {
-            printData = JSON.parse(document.getElementById('printData').value);
-        }
-        
-        // Clear both previews
-        document.getElementById('tokenPreview').classList.add('d-none');
-        document.getElementById('receiptPreview').classList.add('d-none');
-
-        if (printData.invoiceType === 'TOKEN') {
-            // Token preview (55mm)
-            const tokenPreview = document.getElementById('tokenPreview');
-            tokenPreview.classList.remove('d-none');
-            tokenPreview.querySelector('.service-name').textContent = printData.serviceName;
-            tokenPreview.querySelector('.token-number').textContent = printData.invoiceNumber;
-            tokenPreview.querySelector('.valid-till').textContent = `Valid till: ${formatDateToIndian(printData.validTill)}`;
-            tokenPreview.querySelector('.amount').textContent = `₹${printData.amount}/-`;
-        } else {
-            // Receipt preview (Full A4)
-            const receiptPreview = document.getElementById('receiptPreview');
-            receiptPreview.classList.remove('d-none');
-            // Update both copies
-            const receiptCopies = receiptPreview.querySelectorAll('.receipt-copy');
-            receiptCopies.forEach(copy => {
-                copy.querySelector('.service-name').textContent = printData.serviceName;
-                copy.querySelector('.receipt-value').textContent = printData.invoiceNumber || '';
-                copy.querySelector('.gothram-value').textContent = printData.gothram || '';
-                copy.querySelector('.devotee-value').textContent = printData.devoteeName || '';
-                copy.querySelector('.puja-value').textContent = printData.pujaDetails || '';
-                
-                // Format address
-                const address = printData.address;
-                const formattedAddress = address ? 
-                    `${address.address1 || ''} ${address.address2 || ''} ${address.address3 || ''} ${address.address4 || ''}\n` +
-                    `${address.city || ''} ${address.district || ''} ${address.state || ''} ${address.pincode || ''}`
-                    : '';
-                copy.querySelector('.address-value').textContent = formattedAddress;
-                
-                // Convert amount to words
-                const amountInWords = numberToWords(printData.amount);
-                copy.querySelector('.amount-words-value').textContent = `${amountInWords} rupees only`;
-                
-                // Format amount with currency symbol
-                copy.querySelector('.amount-value').textContent = `₹${printData.amount}/-`;
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    field.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    field.classList.remove('is-invalid');
+                }
             });
-        }
-        
-        // Hide success modal and show print preview modal
-        const successModal = bootstrap.Modal.getInstance(document.getElementById('successModal'));
-        const printPreviewModal = new bootstrap.Modal(document.getElementById('printPreviewModal'));
-        
-        if (successModal) {
-            successModal.hide();
-        }
-        printPreviewModal.show();
-    }
 
-    // Format date to Indian format (DD/MM/YYYY)
-    function formatDateToIndian(dateString) {
-        const date = new Date(dateString);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}/${month}/${year}`;
-    }
-
-    // Helper function to convert number to words
-    function numberToWords(number) {
-        const units = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
-        const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
-        
-        if (number === 0) return 'Zero';
-        
-        function convert(n) {
-            if (n < 20) return units[n];
-            if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? ' ' + units[n % 10] : '');
-            if (n < 1000) return units[Math.floor(n / 100)] + ' Hundred' + (n % 100 ? ' and ' + convert(n % 100) : '');
-            if (n < 100000) return convert(Math.floor(n / 1000)) + ' Thousand' + (n % 1000 ? ' ' + convert(n % 1000) : '');
-            return convert(Math.floor(n / 100000)) + ' Lakh' + (n % 100000 ? ' ' + convert(n % 100000) : '');
+            return isValid;
         }
-        
-        return convert(number);
-    }
 
-    // Print document function
-    function printDocument() {
-        const printWindow = window.open('', '_blank');
-        const isToken = document.getElementById('tokenPreview').classList.contains('d-none') === false;
-        const content = document.getElementById(isToken ? 'tokenPreview' : 'receiptPreview').cloneNode(true);
-        
-        printWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    <title>Print</title>
-                    <style>
-                        @page {
-                            size: ${isToken ? '55mm auto' : 'A4 portrait'};
-                            margin: ${isToken ? '0' : '10mm'};
-                        }
-                        body {
-                            margin: 0;
-                            padding: ${isToken ? '0' : '10mm'};
-                        }
-                        .token-print {
-                            background: white url('${window.location.origin}/static/images/saimaster.png') center center no-repeat !important;
-                            background-size: 70% auto !important;
-                            width: ${isToken ? '55mm' : '190mm'};
-                            margin: 0 auto;
-                            -webkit-print-color-adjust: exact;
-                            color-adjust: exact;
-                            print-color-adjust: exact;
-                        }
-                        .receipt-copy {
-                            background: white url('${window.location.origin}/static/images/saimaster.png') center center no-repeat !important;
-                            background-size: 60% auto !important;
-                            page-break-after: always;
-                            -webkit-print-color-adjust: exact;
-                            color-adjust: exact;
-                            print-color-adjust: exact;
-                        }
-                        .receipt-content {
-                            position: relative;
-                            z-index: 2;
-                        }
-                    </style>
-                </head>
-                <body>
-                    ${content.innerHTML}
-                </body>
-            </html>
-        `);
-        
-        printWindow.document.close();
-        setTimeout(() => {
+        // Print preview functions
+        function updatePrintPreview(printData) {
+            console.log('Print Preview Data:', printData); // Debug log
+
+            if (!printData) {
+                printData = JSON.parse(document.getElementById('printData').value);
+            }
+
+            // Clear both previews
+            document.getElementById('tokenPreview').classList.add('d-none');
+            document.getElementById('receiptPreview').classList.add('d-none');
+
+            if (printData.invoiceType === 'TOKEN') {
+                // Token preview (55mm)
+                const tokenPreview = document.getElementById('tokenPreview');
+                tokenPreview.classList.remove('d-none');
+                tokenPreview.querySelector('.service-name').textContent = printData.serviceName;
+                tokenPreview.querySelector('.token-number').textContent = printData.invoiceNumber;
+                tokenPreview.querySelector('.valid-till').textContent = `Valid till: ${formatDateToIndian(printData.validTill)}`;
+                tokenPreview.querySelector('.amount').textContent = `₹${printData.amount}/-`;
+            } else {
+                // Receipt preview (Full A4)
+                const receiptPreview = document.getElementById('receiptPreview');
+                receiptPreview.classList.remove('d-none');
+                // Update both copies
+                const receiptCopies = receiptPreview.querySelectorAll('.receipt-copy');
+                receiptCopies.forEach(copy => {
+                    copy.querySelector('.service-name').textContent = printData.serviceName;
+                    copy.querySelector('.receipt-value').textContent = printData.invoiceNumber || '';
+                    copy.querySelector('.gothram-value').textContent = printData.gothram || '';
+                    copy.querySelector('.devotee-value').textContent = printData.devoteeName || '';
+                    copy.querySelector('.puja-value').textContent = printData.pujaDetails || '';
+
+                    // Format address
+                    const address = printData.address;
+                    const formattedAddress = address ?
+                        `${address.address1 || ''} ${address.address2 || ''} ${address.address3 || ''} ${address.address4 || ''}\n` +
+                        `${address.city || ''} ${address.district || ''} ${address.state || ''} ${address.pincode || ''}`
+                        : '';
+                    copy.querySelector('.address-value').textContent = formattedAddress;
+
+                    // Convert amount to words
+                    const amountInWords = numberToWords(printData.amount);
+                    copy.querySelector('.amount-words-value').textContent = `${amountInWords} rupees only`;
+
+                    // Format amount with currency symbol
+                    copy.querySelector('.amount-value').textContent = `₹${printData.amount}/-`;
+                });
+            }
+
+            // Hide success modal and show print preview modal
+            const successModal = bootstrap.Modal.getInstance(document.getElementById('successModal'));
+            const printPreviewModal = new bootstrap.Modal(document.getElementById('printPreviewModal'));
+
+            if (successModal) {
+                successModal.hide();
+            }
+            printPreviewModal.show();
+        }
+
+        // Format date to Indian format (DD/MM/YYYY)
+        function formatDateToIndian(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+
+        // Helper function to convert number to words
+        function numberToWords(number) {
+            const units = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+            const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+            if (number === 0) return 'Zero';
+
+            function convert(n) {
+                if (n < 20) return units[n];
+                if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? ' ' + units[n % 10] : '');
+                if (n < 1000) return units[Math.floor(n / 100)] + ' Hundred' + (n % 100 ? ' and ' + convert(n % 100) : '');
+                if (n < 100000) return convert(Math.floor(n / 1000)) + ' Thousand' + (n % 1000 ? ' ' + convert(n % 1000) : '');
+                return convert(Math.floor(n / 100000)) + ' Lakh' + (n % 100000 ? ' ' + convert(n % 100000) : '');
+            }
+
+            return convert(number);
+        }
+
+        // Print document function
+        function printDocument() {
+            const printWindow = window.open('', '_blank');
+            const isToken = document.getElementById('tokenPreview').classList.contains('d-none') === false;
+            const content = document.getElementById(isToken ? 'tokenPreview' : 'receiptPreview').cloneNode(true);
+
+            // Copy all styles from the page
+            const styles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'))
+                .map(el => el.outerHTML)
+                .join('\n');
+
+            printWindow.document.write(`
+        <html>
+            <head>
+                <title>Print</title>
+                ${styles}
+                <style>
+                    @page {
+                        size: ${isToken ? '55mm auto' : 'A4 portrait'};
+                        margin: 10mm;
+                    }
+                    body {
+                        margin: 0;
+                        padding: 10mm;
+                    }
+                    .receipt-print {
+                        width: ${isToken ? '45mm' : '190mm'};
+                        margin: 0 auto;
+                    }
+                    .receipt-copy {
+                        page-break-after: avoid;
+                    }
+                </style>
+            </head>
+            <body>
+                ${content.innerHTML}
+            </body>
+        </html>
+    `);
+            printWindow.document.close();
             printWindow.print();
-            printWindow.close();
-        }, 250);
-    }
+        }
 
-    // Add click handler for print preview button
-    document.getElementById('printPreviewBtn').addEventListener('click', function() {
-        const printData = JSON.parse(document.getElementById('printData').value);
-        updatePrintPreview(printData);
+        // Add click handler for print preview button
+        document.getElementById('printPreviewBtn').addEventListener('click', function () {
+            const printData = JSON.parse(document.getElementById('printData').value);
+            updatePrintPreview(printData);
+        });
+        document.querySelector('[onclick="printDocument()"]').addEventListener('click', printDocument);
+
+        // Set current month in the report dropdown
+        const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-indexed
+        document.getElementById('reportMonth').value = currentMonth;
+
+        // Add click handler for report generation
+        document.getElementById('generateReportBtn').addEventListener('click', function () {
+            const month = document.getElementById('reportMonth').value;
+            const year = document.getElementById('reportYear').value;
+
+            // Navigate to the report URL
+            window.location.href = `/reports/monthly?year=${year}&month=${month}`;
+        });
     });
-    document.querySelector('[onclick="printDocument()"]').addEventListener('click', printDocument);
-    
-    // Set current month in the report dropdown
-    const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-indexed
-    document.getElementById('reportMonth').value = currentMonth;
-    
-    // Add click handler for report generation
-    document.getElementById('generateReportBtn').addEventListener('click', function() {
-        const month = document.getElementById('reportMonth').value;
-        const year = document.getElementById('reportYear').value;
-        
-        // Navigate to the report URL
-        window.location.href = `/reports/monthly?year=${year}&month=${month}`;
-    });
-});
 </script>
 
 <style>
-.service-card {
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* Card Colors */
-.service-card-wrapper:nth-child(8n+1) .service-card {
-    background: linear-gradient(135deg, #fcf8a7, #fcf8a7);
-}
-
-.service-card-wrapper:nth-child(8n+2) .service-card {
-    background: linear-gradient(135deg, #fcc5ee, #fcc5ee);
-}
-
-.service-card-wrapper:nth-child(8n+3) .service-card {
-    background: linear-gradient(135deg, #dcb9ff, #dcb9ff);
-}
-
-.service-card-wrapper:nth-child(8n+4) .service-card {
-    background: linear-gradient(135deg, #DFFFBF, #DFFFBF);
-}
-
-.service-card-wrapper:nth-child(8n+5) .service-card {
-    background: linear-gradient(135deg, #c3e6ff, #c3e6ff);
-}
-
-.service-card-wrapper:nth-child(8n+6) .service-card {
-    background: linear-gradient(135deg, #d3f9d8, #d3f9d8);
-}
-
-.service-card-wrapper:nth-child(8n+7) .service-card {
-    background: linear-gradient(135deg, #fedb92, #fedb92);
-}
-
-.service-card-wrapper:nth-child(8n+8) .service-card {
-    background: linear-gradient(135deg, #ff9191, #ff9191);
-}
-
-.btn-check:checked + .btn-outline-primary {
-    background-color: #0d6efd !important;
-    color: white !important;
-}
-
-.card-header {
-    background-color: #f8f9fa;
-}
-
-.modal-lg {
-    max-width: 800px;
-}
-
-/* Print Preview Styles */
-.token-print {
-    background: white url('../static/images/saimaster.png') center center no-repeat;
-    background-size: 70% auto;
-    background-blend-mode: multiply;
-    opacity: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin: 0 auto;
-    width: 55mm;
-    position: relative;
-    z-index: 1;
-}
-
-.receipt-print {
-    background: white;
-    padding: 20px;
-    border: 1px solid #ddd;
-    margin: 0 auto;
-    width: 190mm;
-    height: 277mm;
-    position: relative;
-}
-
-.receipt-copy {
-    position: relative;
-    padding-bottom: 20mm;
-    margin-bottom: 20mm;
-    page-break-after: always;
-    background: white url('../static/images/saimaster.png') center center no-repeat;
-    background-size: 60% auto;
-    background-blend-mode: multiply;
-    opacity: 1;
-}
-
-/* Content styling */
-.receipt-content {
-    position: relative;
-    z-index: 2;
-}
-
-/* Print specific styles */
-@media print {
-    @page {
-        size: auto;
-        margin: 0mm;
+    .service-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
     }
 
-    body {
-        visibility: hidden;
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .token-print, .receipt-print {
-        visibility: visible;
+    /* Card Colors */
+    .service-card-wrapper:nth-child(8n+1) .service-card {
+        background: linear-gradient(135deg, #fcf8a7, #fcf8a7);
+    }
+
+    .service-card-wrapper:nth-child(8n+2) .service-card {
+        background: linear-gradient(135deg, #fcc5ee, #fcc5ee);
+    }
+
+    .service-card-wrapper:nth-child(8n+3) .service-card {
+        background: linear-gradient(135deg, #dcb9ff, #dcb9ff);
+    }
+
+    .service-card-wrapper:nth-child(8n+4) .service-card {
+        background: linear-gradient(135deg, #DFFFBF, #DFFFBF);
+    }
+
+    .service-card-wrapper:nth-child(8n+5) .service-card {
+        background: linear-gradient(135deg, #c3e6ff, #c3e6ff);
+    }
+
+    .service-card-wrapper:nth-child(8n+6) .service-card {
+        background: linear-gradient(135deg, #d3f9d8, #d3f9d8);
+    }
+
+    .service-card-wrapper:nth-child(8n+7) .service-card {
+        background: linear-gradient(135deg, #fedb92, #fedb92);
+    }
+
+    .service-card-wrapper:nth-child(8n+8) .service-card {
+        background: linear-gradient(135deg, #ff9191, #ff9191);
+    }
+
+    .btn-check:checked+.btn-outline-primary {
+        background-color: #0d6efd !important;
+        color: white !important;
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+    }
+
+    .modal-lg {
+        max-width: 800px;
+    }
+
+    /* Print Preview Styles */
+    .token-print {
+        background: white;
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin: 0 auto;
+        width: 55mm;
+    }
+
+    .receipt-print {
+        background: white;
+        padding: 20px;
+        border: 1px solid #ddd;
+        margin: 0 auto;
+        width: 190mm;
+        /* Full A4 width */
+        height: 277mm;
+        /* Full A4 height */
+    }
+
+    .receipt-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .receipt-left {
+        border-right: 1px dashed #ccc;
+        padding-right: 20px;
+    }
+
+    .receipt-right {
+        padding-left: 20px;
+    }
+
+    .amount-section {
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+    }
+
+    .signature-section {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .temple-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .service-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .temple-address {
+        margin-bottom: 15px;
+    }
+
+    .temple-contact-number {
+        margin-bottom: 15px;
+    }
+
+    .amount {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .field-label {
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .receipt-copy {
+        position: relative;
+        padding-bottom: 20mm;
+    }
+
+    .receipt-copy::after {
+        content: '';
         position: absolute;
         left: 0;
-        top: 0;
+        right: 0;
+        bottom: 0;
+        border-bottom: 2px dotted #000;
     }
 
-    .token-print {
-        background: url('../static/images/saimaster.png') center center no-repeat !important;
-        background-size: 70% auto !important;
-        -webkit-print-color-adjust: exact;
-        color-adjust: exact;
-        print-color-adjust: exact;
-    }
-    
     .receipt-copy {
-        background: url('../static/images/saimaster.png') center center no-repeat !important;
-        background-size: 60% auto !important;
-        -webkit-print-color-adjust: exact;
-        color-adjust: exact;
-        print-color-adjust: exact;
         page-break-after: always;
+        margin-bottom: 20mm;
     }
-}
+
+    .office-copy::before {
+        content: "Office Copy";
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .devotee-copy::before {
+        content: "Devotee Copy";
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    @media print {
+        @page {
+            size: A4 portrait;
+            margin: 10mm;
+        }
+
+        body {
+            margin: 0;
+            padding: 10mm;
+            font-family: Arial, sans-serif;
+        }
+
+        .receipt-print {
+            width: 190mm;
+            height: 277mm;
+            margin: 0 auto;
+        }
+
+        .receipt-copy {
+            page-break-after: avoid;
+        }
+    }
 </style>
 {% endblock %}
