@@ -1,0 +1,139 @@
+﻿Endpoint:
+* POST /temple-management/services
+Query Parameter:
+* serviceType=1 (for Abhishekam)
+   * Enum
+      * 1  -  ABHISHEKAM
+      * 2  -  ASHTOTHRAM
+      * 3  -  VISHNUSAHASRANAMAM
+      * 4  -  VISHNUSAHASRANAMAM_WITH_POST
+      * 5  -  PALLAKISEVA
+      * 6  -  SAI_SATHYA_VRATHAM
+      * 7  -  ANNADANAM
+      * 8  -  RUDRABHISHEKAM
+      * 9  -  SAMUHIKA_RUDRABHISHEKAM
+      * 10  -  SASWATHA_VISHNUSAHASRANAMA_PUJA
+      * 11  -  SASWATHA_DUNI_PUJA
+      * 12  -  SASWATHA_AKANDA_DEEPA_SEVA
+      * 13  -  SASWATHA_VISHNUSAHASRANAMA_PUJA_ALLFESTIVALS
+      * 14  -  SASWATHA_ANNADANAM
+      * 15  -  SASWATHA_ANNADANAM_ALLFESTIVALS
+      * 16  -  SARVASEVA
+      * 17  -  ANNADANAM_YEARLYONCE
+      * 18  -  DHUNIPUJA_WITH_PUJA_MATERIAL
+      * 19  -  DHUNIPUJA_WITHOUT_PUJA_MATERIAL
+Request Body:
+* invoiceType: (Mandatory)
+   * TOKEN
+   * RECEIPT
+* Frequency: (Optional)
+   * SINGLE
+   * WEEKLY
+   * MONTHLY
+* paymentMethod: (Mandatory)
+   * UPI
+   * CASH
+   * CARD
+* pujaDetails (Optional for ServiceType = 1 & Frequency = SINGLE and ServiceType = 2 and Mandatory for remaining Services)
+* address (Optional for ServiceType = 1 & Frequency = SINGLE and ServiceType = 2 and Mandatory for remaining Services)
+* gothram (Optional for ServiceType = 1 & Frequency = SINGLE and ServiceType = 2 and Mandatory for remaining Services)
+* devoteeName (Optional for ServiceType = 1 & Frequency = SINGLE and ServiceType = 2 and Mandatory for remaining Services)
+* devoteeContactNum (Optional for ServiceType = 1 & Frequency = SINGLE and ServiceType = 2 and Mandatory for remaining Services)
+Response:
+* Success:
+
+   * message: " {ServiceType.value} service created successfully."
+   * status: "success"
+   * id: (if invoiceType == token then tokenNo else receiptNo)
+   * amount: {serviceAmount}
+   * pujaDetails (if available)
+   * address (if available)
+   * gothram (if available)
+   * serviceName: {ServiceType.value}
+   * validTill: 
+   * Error:
+
+      * message: "Error creating Abhishekam service: [Error message]"
+      * status: "error"
+Data Structure:
+      * Document:
+      * serviceType: 1 (Abhishekam) 
+      * serviceName: "Abhishekam" refer above ServiceType Enum
+      * id:  tokenNo or receiptNo (unique)
+      * validTill: Mandatory 
+      * devoteeDetails: (notMandatory for TOKEN)
+      * name : name of the Devotee (optional)
+      * contactNumber: ContactNumber of the Devotee (optional)
+      * gothram : (Optional for ServiceType = 1 & Frequency = SINGLE and ServiceType = 2 and and Mandatory for remaining Services)
+      * pujaDetails: (Optional for ServiceType = 1 & Frequency = SINGLE and ServiceType = 2 and and Mandatory for remaining Services)
+      * address: (Optional for ServiceType = 1 & Frequency = SINGLE and ServiceType = 2 and and Mandatory for remaining Services)
+      * address1:
+      * address2:
+      * address3:
+      * address4:
+      * City: 
+      * district:
+      * state:
+      * pincode:
+      * createdAt: Timestamp
+      * paymentDetails: 
+      * paymentMethod: (e.g., UPI, CASH, CARD)
+      * amount: EXAMPLE  -  16 (based on below servicePrices)
+      * Enum
+      * SERVICE_PRICES
+      *     "1": 16,    # ABHISHEKAM
+      *     "2": 11,    # ASHTOTHRAM
+      *     "3": 50,    # VISHNUSAHASRANAMAM
+      *     "4": 60,    # VISHNUSAHASRANAMAM_WITH_POST
+      *     "5": 200,   # PALLAKISEVA
+      *     "6": 150,   # SAI_SATHYA_VRATHAM
+      *     "7": 1116,  # ANNADANAM
+      *     "8": 2000,  # RUDRABHISHEKAM
+      *     "9": 250,   # SAMUHIKA_RUDRABHISHEKAM
+      *     "10": 1116, # SASWATHA_VISHNUSAHASRANAMA_PUJA
+      *     "11": 1516, # SASWATHA_DUNI_PUJA
+      *     "12": 1516, # SASWATHA_AKANDA_DEEPA_SEVA
+      *     "13": 5116, # SASWATHA_VISHNUSAHASRANAMA_PUJA_ALLFESTIVALS
+      *     "14": 2116, # SASWATHA_ANNADANAM
+      *     "15": 10116,# SASWATHA_ANNADANAM_ALLFESTIVALS
+      *     "16": 5116, # SARVASEVA
+      *     "17": 3516, # ANNADANAM_YEARLYONCE
+      *     "18": 100,  # DHUNIPUJA_WITH_PUJA_MATERIAL
+      *     "19": 35    # DHUNIPUJA_WITHOUT_PUJA_MATERIAL
+
+
+
+
+
+
+
+
+
+
+General Business Logic: 
+      * Generate Token/Receipt:
+      * If invoiceType is "TOKEN":
+      * Generate a unique token number (TA0001 - TZ9999).
+      * If invoiceType is "RECEIPT":
+      * Generate a unique receipt number (RA0001 - RZ9999).
+Service level Business Logic:
+        ABHISHEKAM: 
+      * Required BODY: 
+      * invoiceType - TOKEN / RECEIPT
+      * Frequency  -  SINGLE  -  16 Rupee
+           -  WEEKLY  -  16 * 7days
+                -  MONTHLY  -  16 * monthDays
+
+
+* for WEEKLY/MONTHLY, RECEIPT needs to be created and devoteeDetails.name, devoteeDetails.gothram, devoteeDetails.pujaDetails are Required contactNumber and address are optional
+      * paymentMethod  -  UPI, CASH, CARD
+         ASHTOTHRAM:
+      * Required BODY: 
+      * invoiceType - TOKEN
+      * Frequency  -  SINGLE  -  11 Rupees
+      * paymentMethod  -  UPI, CASH, CARD
+Key Considerations:
+      * Error Handling: Implement robust error handling for invalid requests, payment failures, and other potential issues.
+      * Data Validation: Perform strict data validation on all input parameters.
+      * Security: Implement appropriate security measures to protect sensitive data (e.g., payment information).
+      * Testing: Thoroughly test the amount calculation logic, validTill functionality, and data consistency across documents.

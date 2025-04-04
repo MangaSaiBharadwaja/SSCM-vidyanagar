@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center" style="background-color: black; color: white; height: 80vh;width: 100%;z-index:-10000000;">
+    
+    <h1 class="display-4 mb-4" style="padding: 5cqb; letter-spacing: 2px;"> Jai Sai Master </h1>
+    <span>
+        <h3>అనంత్తార్యా తనూజాతం సాయి నాథ సమప్రభం |</h3>
+        <h3>భరద్వాజా మహం వందే సర్వా శిష్య ఫలప్రదం ||</h3>
+    </span>
+    
+    <div style="z-index:100000000000;position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; height: 250px;">
+        <div style="position: absolute;bottom:0px;left:0%;width:100%;height:450px;border-radius: 50%;background-color: rgb(255 255 255);transform: translateY(50%);">
+            <p style="color: black; font-size: 1.2em;">
+                {% if not current_user.is_authenticated %}
+                <p class="lead" style="color: black; font-size: 1.8em;line-height: 180px; font-weight: 400; letter-spacing: 2px;">Please <a href="{{ url_for('login') }}">L☻gin</a> to access the system.</p>
+            {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: content-box;
+    }
+    body{
+        background-color: black;
+    }
+</style>
+{% endblock %}

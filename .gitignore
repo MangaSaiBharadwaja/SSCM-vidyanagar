@@ -1,0 +1,10 @@
+__pycache__/
+temple.db
+instance/
+*.pyc
+*.db
+reports/
+*.log
+*.sqlite3
+*.pyo
+*.csv
