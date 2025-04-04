@@ -23,10 +23,6 @@ python app.py
 3. Access the application:
 Open a web browser and navigate to `http://localhost:5000`
 
-## Default Login Credentials
-- Username: admin
-- Password: admin123
-
 ## Deployment on Raspberry Pi
 1. Clone this repository
 2. Install dependencies
